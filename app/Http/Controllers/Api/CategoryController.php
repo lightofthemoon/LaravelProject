@@ -12,7 +12,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        //Get All Category
+        print("Done");
+        return 'done';
+
     }
 
     /**

@@ -12,6 +12,21 @@ class Category extends JsonResource
      *
      * @return array<string, mixed>
      */
+
+    public $categoryId;
+
+    public $name;
+
+    // public function getCategoryId () {
+    //     return $categoryId;
+    // }
+
+    // public function setCategoryName($value)
+    // {
+    //     $this->attributes['name'] = $value;
+    // }
+
+
     public function toArray(Request $request): array
     {
         return parent::toArray($request);
