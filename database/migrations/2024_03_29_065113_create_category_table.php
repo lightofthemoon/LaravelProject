@@ -9,9 +9,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('category', function (Blueprint $table) {
-            $table->increments('CategoryID');
+            $table->id();
             $table->string('CategoryName');
-            $table->boolval('isDeleted', default: $false);
+            $table->boolean('isDeleted')->default(1);
         });
     }
 

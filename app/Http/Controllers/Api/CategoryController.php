@@ -31,7 +31,7 @@ class CategoryController extends Controller
         $category->CategoryName = $validatedData['CategoryName'];
         $category->save();
 
-        return response()->json($category, 201);
+        return response()->json("done", 201);
     }
 
     /**
