@@ -14,7 +14,7 @@ class CategoryController extends Controller
     {
         //Get All Category
         print("Done");
-        return 'done';
+        return 'done1';
 
     }
 
@@ -23,7 +23,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'CategoryName' => 'required|string|max:255',
+        ]);
+
+        $category = new Category;
+        $category->CategoryName = $validatedData['CategoryName'];
+        $category->save();
+
+        return response()->json($category, 201);
     }
 
     /**
@@ -40,6 +48,15 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $validatedData = $request->validate([
+            'CategoryName' => 'required|string|max:255',
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->CategoryName = $validatedData['CategoryName'];
+        $category->save();
+
+        return response()->json($category);
     }
 
     /**
@@ -48,5 +65,10 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         //
+        $category = Category::findOrFail($id);
+        $category->isDeleted = true;
+        $category->save();
+
+        return response()->json("Update Delete success", 200);
     }
 }
