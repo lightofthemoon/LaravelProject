@@ -2,52 +2,57 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
-
+use App\Models\Category;
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //Get All Category
-        print("Done");
-        return 'done1';
-
+        $categories = Category::all();
+        return response()->json($categories);
     }
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'CategoryName' => 'required|string|max:255',
+            'categoryName' => 'required|string|max:255',
         ]);
 
         $category = new Category;
-        $category->CategoryName = $validatedData['CategoryName'];
+        $category->CategoryName = $validatedData['categoryName'];
         $category->save();
 
-        return response()->json("done", 201);
+        return response()->json($category, 200);
     }
-
+    
     /**
      * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return response()->json($category);
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
         $validatedData = $request->validate([
             'CategoryName' => 'required|string|max:255',
         ]);
@@ -61,14 +66,14 @@ class CategoryController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
         $category = Category::findOrFail($id);
-        $category->isDeleted = true;
-        $category->save();
-
-        return response()->json("Update Delete success", 200);
+        $category->delete();
+        return response()->json("Delete success", 200);
     }
 }
