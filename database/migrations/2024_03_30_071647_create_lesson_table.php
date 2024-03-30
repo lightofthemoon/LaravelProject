@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('lesson', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('CourseId')->constrained('course');
-            $table->foreignId('TeacherId')->constrained('teacher');
-            $table->string("Name");
-            $table->string("Content");
-            $table->string("VideoURL");
+            $table->foreignId('courseId')->constrained('course');
+            $table->foreignId('teacherId')->constrained('teacher');
+            $table->string("name");
+            $table->string("content");
+            $table->string("videoURL");
             $table->boolean('isDeleted')->default(1);
             $table->timestamps();
         });

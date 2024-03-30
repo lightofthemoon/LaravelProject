@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('courseId');
             $table->foreign('accountId')->references('id')->on('account')->constrained('account');
             $table->foreign('courseId')->references('id')->on('course')->constrained('course');
-            $table->decimal('Amount');
-            $table->string('Note');
+            $table->decimal('amount');
+            $table->string('note');
             $table->timestamps();
         });
     }

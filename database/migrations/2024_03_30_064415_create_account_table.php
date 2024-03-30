@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('account', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('RoleId')->constrained('role');
-            $table->string("Name");
-            $table->date('Birthday');
-            $table->string("Email");
-            $table->string("PhoneNumber");
-            $table->string("Avatar");
-            $table->boolean("Gender")->default(0);
-            $table->string("Password");
+            $table->foreignId('roleId')->constrained('role');
+            $table->string("name");
+            $table->date('birthday');
+            $table->string("email");
+            $table->string("phoneNumber");
+            $table->string("avatar");
+            $table->boolean("gender")->default(0);
+            $table->string("password");
             $table->boolean('isDeleted')->default(1);
             $table->timestamps();
         });

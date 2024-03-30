@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('review', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('CourseId')->constrained('course');
-            $table->foreignId('AccountId')->constrained('account');
-            $table->decimal("Rating");
-            $table->string('Comment');
+            $table->foreignId('courseId')->constrained('course');
+            $table->foreignId('accountId')->constrained('account');
+            $table->decimal("rating");
+            $table->string('comment');
             $table->boolean('isDeleted')->default(1);
             $table->timestamps();
         });

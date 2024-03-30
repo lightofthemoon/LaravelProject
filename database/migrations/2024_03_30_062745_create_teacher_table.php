@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('teacher', function (Blueprint $table) {
             $table->id();
-            $table->string('Name');
-            $table->string('PhoneNumber');
-            $table->string('Email');
-            $table->string('Avatar');
-            $table->string('Gender');
+            $table->string('name');
+            $table->string('phoneNumber');
+            $table->string('email');
+            $table->string('avatar');
+            $table->string('gender');
             $table->boolean('isDeleted')->default(1);
             $table->timestamps();
         });

@@ -10,14 +10,14 @@ return new class extends Migration
 {
     Schema::create('course', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('CategoryId')->constrained('category');
-        $table->string('Title');
-        $table->string('Description');
-        $table->date('StartDate');
-        $table->decimal('Price', 10, 2);
-        $table->string('ImageURL')->nullable();
-        $table->string('DemoVideo')->nullable();
-        $table->string('Note')->nullable();
+        $table->foreignId('categoryId')->constrained('category');
+        $table->string('title');
+        $table->string('description');
+        $table->date('startDate');
+        $table->decimal('price', 10, 2);
+        $table->string('imageURL')->nullable();
+        $table->string('demoVideo')->nullable();
+        $table->string('note')->nullable();
         $table->boolean('isDeleted')->default(1);
     });
 }

@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('category', function (Blueprint $table) {
             $table->id();
-            $table->string('CategoryName');
+            $table->string('categoryName');
             $table->boolean('isDeleted')->default(1);
         });
     }
