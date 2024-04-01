@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
-use App\Models\Category;
-class CategoryController extends Controller
+
+class TeacherController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        return response()->json($categories);
+        $teacher = Teacher::all();
+        return response()->json($teacher);
     }
 
     /**
