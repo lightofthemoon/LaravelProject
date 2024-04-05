@@ -2,8 +2,13 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\CategoryController;
-use App\Http\Controllers\Api\VideoController;
+use App\Http\Controllers\Api\CourseController;
+use App\Http\Controllers\Api\LessonController;
+use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TeacherController;
+use App\Http\Controllers\Api\AccountController;
+// use App\Http\Controllers\Api\TeacherController;
 // Route::get('category',[CategoryController::class,'index']); ///correct
 
 //Route::get('category', 'Api\CategoryController@index')->name('category.index');
