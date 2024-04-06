@@ -1,78 +1,77 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Teacher;
 
 class TeacherController extends Controller
 {
+    ///Validate
+
+    public function validationData($request) {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'phoneNumber' => 'required|string|max: 10',
+            'email' => 'required|string|max:255',
+            'avatar' => 'required|string|max:255',
+            'gender' => 'required|string|max:255',
+        ]);
+        return $validatedData;
+    }
+    public function validate($validatedData, $teacher) {
+        $teacher->name = $validatedData['name'];
+        $teacher->phoneNumber = $validatedData['phoneNumber'];
+        $teacher->email = $validatedData['email'];
+        $teacher->avatar = $validatedData['avatar'];
+        $teacher->gender = $validatedData['gender'];
+    }
+
+    /// Get function
+
+    public function show($id)
+    {
+        $teacher = Teacher::findOrFail($id);
+        return response()->json($teacher);
+    }
+
     public function index()
     {
         $teacher = Teacher::all();
         return response()->json($teacher);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //Post function
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'categoryName' => 'required|string|max:255',
-        ]);
+        $validatedData = $this->validationData($request);
+        $teacher = new Teacher;
+        $this->validate($validatedData, $teacher);
+        $teacher->save();
 
-        $category = new Category;
-        $category->CategoryName = $validatedData['categoryName'];
-        $category->save();
-
-        return response()->json($category, 200);
+        return response()->json($teacher, 200);
     }
     
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $category = Category::findOrFail($id);
-        return response()->json($category);
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
+    //Put function
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'CategoryName' => 'required|string|max:255',
-        ]);
+        $validatedData = $this->validationData($request);
 
-        $category = Category::findOrFail($id);
-        $category->CategoryName = $validatedData['CategoryName'];
-        $category->save();
+        $teacher = Teacher::findOrFail($id);
+        $this->validate($validatedData, $teacher);
+        $teacher->save();
 
-        return response()->json($category);
+        return response()->json($teacher);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //Delete function
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->isDeleted = 1;
-        return response()->json("Delete success", 200);
+        $teacher = Teacher::findOrFail($id);
+        $teacher->isDeleted = 1;
+        return response()->json("Delete Teacher Success", 200);
     }
 }

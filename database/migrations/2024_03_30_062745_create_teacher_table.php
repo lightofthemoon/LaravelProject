@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('avatar');
             $table->string('gender');
             $table->boolean('isDeleted')->default(1);
-            $table->timestamps();
+            
         });
     }
 

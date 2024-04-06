@@ -11,5 +11,5 @@ class Course extends Model
     protected $table = 'course';
     protected $primaryKey = 'id';
     protected $foreignKey = 'categoryId';
-    public $timestamp = false;
+    public $timestamp = true;
 }
