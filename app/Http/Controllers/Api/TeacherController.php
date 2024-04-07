@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
 use App\Models\Teacher;
 
 class TeacherController extends Controller
 {
     ///Validate
-
     public function validationData($request) {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -48,7 +47,6 @@ class TeacherController extends Controller
         $teacher = new Teacher;
         $this->validate($validatedData, $teacher);
         $teacher->save();
-
         return response()->json($teacher, 200);
     }
     

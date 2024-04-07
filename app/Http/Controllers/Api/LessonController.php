@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
 use App\Models\Lesson;
@@ -63,6 +63,13 @@ class LessonController extends Controller
         $lesson->save();
 
         return response()->json($lesson);
+    }
+
+    public function restore($id) {
+        $lesson = Account::findOrFail($id);
+        $lesson->isDeleted = 0;
+        $message = "Restore Lesson Success!";
+        return response()->json($message, 200);
     }
 
     //Delete function

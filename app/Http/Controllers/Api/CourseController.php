@@ -69,6 +69,12 @@ class CourseController extends Controller
         return response()->json($course);
     }
 
+    public function restore($id) {
+        $course = Course::findOrFail($id);
+        $course->isDeleted = 0;
+        return response()->json("Restore Course success", 200);
+    }
+
     //Delete function
     public function destroy($id)
     {
@@ -76,4 +82,5 @@ class CourseController extends Controller
         $course->isDeleted = 1;
         return response()->json("Delete Course success", 200);
     }
+
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("email");
             $table->string("phoneNumber");
             $table->string("avatar");
-            $table->boolean("gender")->default(0);
+            $table->string("gender");
             $table->string("password");
             $table->boolean('isDeleted')->default(1);
             $table->timestamps();

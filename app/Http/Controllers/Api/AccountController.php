@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
 use App\Models\Account;
@@ -42,8 +42,12 @@ class AccountController extends Controller
 
     public function show($id)
     {
-        $account = Account::findOrFail($id);
-        return response()->json($account);
+        try {
+            $account = Account::findOrFail($id);
+            return response()->json($account);
+        } catch (\Exception $e) {
+            return response()->json("Account not found!", 404);
+        }
     }
     
     //Post function

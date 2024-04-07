@@ -56,11 +56,25 @@ class CategoryController extends Controller
         return response()->json($category);
     }
 
+    public function restore($id) {
+        try {
+            $category = Category::findOrFail($id);
+            if($category->isDeleted == 0) {
+                return response()->json("Category is available!", 400);
+            }
+            $category->isDeleted = 0;
+            $message = "Restore success!";
+            return response()->json($message);
+        } catch (\Exception $e) {
+            return response()->json("Category not found!", 404);
+        }
+    }
+
     //Delete function
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
         $category->isDeleted = 1;
-        return response()->json("Delete success", 200);
+        return response()->json("Delete success!", 200);
     }
 }
