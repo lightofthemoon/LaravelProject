@@ -49,6 +49,17 @@ class AccountController extends Controller
             return response()->json("Account not found!", 404);
         }
     }
+
+    public function getByUserName($userName) {
+        try {
+            $account = Account::findOrFail($userName);
+            return response()->json($account);
+        } catch (\Exception $e) {
+            return response()->json("Fail");
+        }
+    }
+
+    
     
     //Post function
     public function store(Request $request)

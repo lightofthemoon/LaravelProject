@@ -66,3 +66,10 @@ Route::prefix('teacher')->group(function() {
     Route::delete('/{id}', [TeacherController::class, 'destroy']);
 });
 
+Route::prefix('auth')->group(function() {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logIn', [AuthController::class, 'logIn']);
+    Route::post('/logOut', [AuthController::class, 'logOut']);
+    Route::post('/changePass', [AuthController::class, 'changePass']);
+    Route::post('/forgotPass', [AuthController::class, 'forgotPass']);
+});
