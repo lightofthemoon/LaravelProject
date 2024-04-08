@@ -39,7 +39,9 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::with('category')->get();
-        return CourseResource::collection($courses);
+        return CourseResource::collection($courses)->map(function ($resource) {
+            return $resource->toArray(request());
+        })->all();
     }
 
     public function show($id)
