@@ -63,6 +63,7 @@ class CourseController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $this->validationData($request);
+        $course = Course::findOrFail($id);
         validate($validatedData, $course);
         $course->save();
 
