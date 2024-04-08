@@ -15,5 +15,5 @@ class Course extends Model
     {
         return $this->belongsTo(Category::class, 'categoryId', 'id');
     }
-    public $timestamp = false;
+    public $timestamp = true;
 }

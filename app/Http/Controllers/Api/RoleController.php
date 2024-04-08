@@ -59,6 +59,13 @@ class RoleController extends Controller
         return response()->json($role);
     }
 
+    public function restore(Request $request, $id) {
+        $role = Role::findOrFail($id);
+        $role->isDeleted = 0;
+        $role->save();
+        return response()->json("Restore Role success", 200);
+    }
+
     //Delete function
     public function destroy($id)
     {

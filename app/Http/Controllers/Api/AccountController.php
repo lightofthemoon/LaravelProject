@@ -36,7 +36,7 @@ class AccountController extends Controller
     ///Get function
     public function index()
     {
-        $accounts = Account::all();
+        $accounts = Account::with('role')->get();
         return response()->json($accounts);
     }
 

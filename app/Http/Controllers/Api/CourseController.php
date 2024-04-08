@@ -55,7 +55,7 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validatedData = $this->validationData($request);
-        $category=Category::findOrFail($validatedData['categoryId']);
+        $category = Category::findOrFail($validatedData['categoryId']);
         if(!isset($category)) {
             return response()->json("CategoryNotFound", 404);
         }
@@ -70,26 +70,25 @@ class CourseController extends Controller
     // Put function
     public function update(Request $request, $id)
     {
+        $course = Course::findOrFail($id);
         $validatedData = $this->validationData($request);
 
-        $category = Category::findOrFail($validatedData['categoryId']);
-
-        if (!$category) {
-            return response()->json(['error' => 'Category not found'], 404);
+        if($course->categoryId !== $request->categoryId) {
+            $category = Category::findOrFail($course->categoryId);
+            if (isset($category)) {
+                return response()->json(['error' => 'Category not found'], 404);
+            }
         }
+        $this->validation($validatedData, $course);
 
-        $course = Course::findOrFail($id);
-
-        $this->validation($request, $course);
-
-        $course->update($validatedData);
-
+        $course->save();
         return response()->json($course, 200);
     }
 
     public function restore($id) {
         $course = Course::findOrFail($id);
         $course->isDeleted = 0;
+        $course->save();
         return response()->json("Restore Course success", 200);
     }
 

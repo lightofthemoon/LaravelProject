@@ -48,6 +48,7 @@ Route::prefix('role')->group(function () {
     Route::get('/{id}', [RoleController::class, 'show']);
     Route::post('/', [RoleController::class, 'store']);
     Route::put('/{id}', [RoleController::class, 'update']);
+    Route::put('/restore/{id}', [RoleController::class, 'restore']);
     Route::delete('/{id}', [RoleController::class, 'destroy']);
 });
 
