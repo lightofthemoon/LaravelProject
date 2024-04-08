@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Account extends Model
 {
     use HasFactory;
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'roleId');
+    }
     protected $table = 'account'; 
     protected $primaryKey = 'id'; 
     public $timestamps = false;

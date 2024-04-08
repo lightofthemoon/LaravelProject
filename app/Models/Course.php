@@ -11,5 +11,9 @@ class Course extends Model
     protected $table = 'course';
     protected $primaryKey = 'id';
     protected $foreignKey = 'categoryId';
-    public $timestamp = true;
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'categoryId', 'id');
+    }
+    public $timestamp = false;
 }

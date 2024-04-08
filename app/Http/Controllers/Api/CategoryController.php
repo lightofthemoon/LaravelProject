@@ -48,12 +48,20 @@ class CategoryController extends Controller
     //Put function
     public function update(Request $request, $id)
     {
-        $validatedData = $this->validation($request);
         $category = Category::findOrFail($id);
-        $category->CategoryName = $validatedData['CategoryName'];
-        $category->save();
 
-        return response()->json($category);
+        $validatedData = $request->validate([
+            'categoryName' => 'required|string|max:255',
+        ]);
+
+        if ($validatedData == false) {
+            dd($request->validator->messageBag()->getMessages());
+            return response()->json($request->validator->messageBag()->getMessages(), 200);
+        }
+        
+        $category->update($validatedData);
+
+        return response()->json($category, 200);
     }
 
     public function restore($id) {
@@ -75,6 +83,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->isDeleted = 1;
+        $category->save();
         return response()->json("Delete success!", 200);
     }
 }
