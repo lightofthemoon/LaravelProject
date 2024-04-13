@@ -85,12 +85,12 @@ class AccountController extends Controller
             return response()->json([
                 'errCode' => 0,
                 'message' => 'User Create Success'
-            ]);
+            ],200);
         }
         return response()->json([
             'errCode' => 1,
             'message' => 'User Exist'
-        ]);
+        ],404);
     }
 
     public function login(Request $request)
@@ -99,30 +99,30 @@ class AccountController extends Controller
             return response()->json([
                 'errCode' => 1,
                 'message' => 'Email and password are required'
-            ]);
+            ],400);
         }
         $account = Account::where('email', $request->email)->first();
-        $data = [];
+
         if (isset($account)) {
             if (Hash::check($request->password, $account->password)) {
-                $data =  [
+                return response()->json([
                     'errCode' => 0,
-                    'errMessage' => 'Ok',
+                    'message' => 'Ok',
                     'account' => $account
-                ];
+                ],200);
             } else {
-                $data = [
+                return response()->json([
                     'errCode' => 3,
-                    'errMessage' => 'Wrong password'
-                ];
+                    'message' => 'Wrong password',
+                ],400);
             }
         } else {
-            $data = [
+            return response()->json([
                 'errCode' => 1,
-                'errMessage' => 'Email Wrong'
-            ];
+                'message' => 'Email Wrong',
+            ],400);
+
         }
-        return response()->json($data);
     }
 
     //Put function
