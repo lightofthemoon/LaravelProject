@@ -15,11 +15,9 @@ class AccountController extends Controller
         $validatedData = $request->validate([
             'roleId' => 'required|string|max:255',
             'name' => 'required|string|max:255',
-            'birthday' => 'required|date|max:255',
             'email' => 'required|string|email|max:255',
             'phoneNumber' => 'required|string|max:255',
             'avatar' => 'required|string|max:255',
-            'gender' => 'required|string|max:255',
             'password' => 'required|string|max:255',
         ]);
         return $validatedData;
@@ -28,11 +26,9 @@ class AccountController extends Controller
     {
         $account->roleId = $validatedData['roleId'];
         $account->name = $validatedData['name'];
-        $account->birthday = $validatedData['birthday'];
         $account->email = $validatedData['email'];
         $account->phoneNumber = $validatedData['phoneNumber'];
         $account->avatar = $validatedData['avatar'];
-        $account->gender = $validatedData['gender'];
         $account->password = $validatedData['password'];
     }
 
@@ -73,7 +69,6 @@ class AccountController extends Controller
             return response()->json("Fail");
         }
     }
-
 
 
     //Post function

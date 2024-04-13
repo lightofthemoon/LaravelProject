@@ -17,6 +17,7 @@ class CourseSeeder extends Seeder
         $courses = [
             [
                 'categoryId' => 1,
+                'teacherId' => 1,
                 'title' => 'Introduction to Web Development',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo felis vel diam.',
                 'startDate' => '2023-06-01',
@@ -28,6 +29,7 @@ class CourseSeeder extends Seeder
             ],
             [
                 'categoryId' => 1,
+                'teacherId' => 1,
                 'title' => 'Build responsesive website with Laravel',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo felis vel diam.',
                 'startDate' => '2023-07-15',
@@ -39,6 +41,7 @@ class CourseSeeder extends Seeder
             ],
             [
                 'categoryId' => 2,
+                'teacherId' => 2,
                 'title' => 'Advanced Kotlin',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo felis vel diam.',
                 'startDate' => '2023-07-15',
@@ -50,6 +53,7 @@ class CourseSeeder extends Seeder
             ],
             [
                 'categoryId' => 2,
+                'teacherId' => 2,
                 'title' => 'Flutter the next generation',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo felis vel diam.',
                 'startDate' => '2023-07-15',
@@ -61,6 +65,7 @@ class CourseSeeder extends Seeder
             ],
             [
                 'categoryId' => 3,
+                'teacherId' => 3,
                 'title' => 'SQL basic',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo felis vel diam.',
                 'startDate' => '2023-07-15',
@@ -72,6 +77,7 @@ class CourseSeeder extends Seeder
             ],
             [
                 'categoryId' => 3,
+                'teacherId' => 3,
                 'title' => 'NumPy',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo felis vel diam.',
                 'startDate' => '2023-07-15',
@@ -83,6 +89,7 @@ class CourseSeeder extends Seeder
             ],
             [
                 'categoryId' => 4,
+                'teacherId' => 4,
                 'title' => 'CSRF attack',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo felis vel diam.',
                 'startDate' => '2023-07-15',
@@ -94,6 +101,7 @@ class CourseSeeder extends Seeder
             ],
             [
                 'categoryId' => 4,
+                'teacherId' => 4,
                 'title' => 'XSS attack',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo felis vel diam.',
                 'startDate' => '2023-07-15',
@@ -105,6 +113,7 @@ class CourseSeeder extends Seeder
             ],
             [
                 'categoryId' => 5,
+                'teacherId' => 5,
                 'title' => 'ChatGPT',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo felis vel diam.',
                 'startDate' => '2023-07-15',
@@ -116,6 +125,7 @@ class CourseSeeder extends Seeder
             ],
             [
                 'categoryId' => 5,
+                'teacherId' => 5,
                 'title' => 'SoraAI',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo felis vel diam.',
                 'startDate' => '2023-07-15',
@@ -125,7 +135,7 @@ class CourseSeeder extends Seeder
                 'note' => 'Prerequisite: Basic knowledge of Python.',
                 'isDeleted' => 0,
             ],
-            
+
         ];
 
         foreach ($courses as $course) {

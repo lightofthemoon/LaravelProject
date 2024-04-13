@@ -15,11 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('roleId')->constrained('role');
             $table->string("name");
-            $table->date('birthday');
             $table->string("email");
             $table->string("phoneNumber");
             $table->string("avatar");
-            $table->string("gender");
             $table->string("password");
             $table->boolean('isDeleted')->default(1);
             $table->timestamps();
