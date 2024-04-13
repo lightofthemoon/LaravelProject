@@ -54,8 +54,9 @@ class CourseController extends Controller
     {
         $courses = Course::where('categoryId', $categoryId)
                         ->get();
-    
-        return response()->json($courses);
+        return CourseResource::collection($courses)->map(function ($resource) {
+            return $resource->toArray(request());
+        })->all();
     }
 
 
