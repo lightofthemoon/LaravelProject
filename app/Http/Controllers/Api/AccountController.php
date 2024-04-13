@@ -82,7 +82,10 @@ class AccountController extends Controller
             $hash_password = bcrypt($account['password']);
             $account->password = $hash_password;
             $account->save();
-            return response()->json($account, 200);
+            return response()->json([
+                'errCode' => 0,
+                'message' => 'User Create Success'
+            ]);
         }
         return response()->json([
             'errCode' => 1,
@@ -120,7 +123,6 @@ class AccountController extends Controller
             ];
         }
         return response()->json($data);
-        //$account->password = Hash::
     }
 
     //Put function
