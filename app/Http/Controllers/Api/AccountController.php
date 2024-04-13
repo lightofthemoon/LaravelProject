@@ -1,14 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use App\Http\Controllers\Controller; 
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Account;
+use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
     //Validate
-    public function validationData($request) {
+    public function validationData($request)
+    {
         $validatedData = $request->validate([
             'roleId' => 'required|string|max:255',
             'name' => 'required|string|max:255',
@@ -21,7 +24,8 @@ class AccountController extends Controller
         ]);
         return $validatedData;
     }
-    public function validate($validatedData, $account) {
+    public function validate($validatedData, $account)
+    {
         $account->roleId = $validatedData['roleId'];
         $account->name = $validatedData['name'];
         $account->birthday = $validatedData['birthday'];
@@ -32,11 +36,21 @@ class AccountController extends Controller
         $account->password = $validatedData['password'];
     }
 
+    ///Function
+    public function checkUserEmail($email)
+    {
+        $account = Account::where('email', $email)->first();
+        if ($account) {
+            return true;
+        }
+        return false;
+    }
+
 
     ///Get function
     public function index()
     {
-        $accounts = Account::all();
+        $accounts = Account::with('role')->get();
         return response()->json($accounts);
     }
 
@@ -50,7 +64,8 @@ class AccountController extends Controller
         }
     }
 
-    public function getByUserName($userName) {
+    public function getByUserName($userName)
+    {
         try {
             $account = Account::findOrFail($userName);
             return response()->json($account);
@@ -59,18 +74,55 @@ class AccountController extends Controller
         }
     }
 
-    
-    
+
+
     //Post function
     public function store(Request $request)
     {
         $validatedData = $this->validationData($request);
-        $account = new Account;
-        $this->validate($validatedData, $account);
-        $account->save();
-        return response()->json($account, 200);
+        $account = Account::where('email', $request->email)->first();
+        if (!$account) {
+            $account = new Account;
+            $this->validate($validatedData, $account);
+            $hash_password = bcrypt($account['password']);
+            $account->password = $hash_password;
+            $account->save();
+            return response()->json($account, 200);
+        }
+        return response()->json([
+            'errCode' => 1,
+            'message' => 'User Exist'
+        ]);
     }
-    
+
+    public function login(Request $request)
+    {
+        if (!$request->email && !$request->password) {
+            return response()->json([
+                'errCode' => 1,
+                'message' => 'Email and password are required'
+            ]);
+        }
+        $account = Account::where('email', $request->email)->first();
+
+        if ($account) {
+            if (Hash::check($request->password, $account->password)) {
+                $data =  [
+                    'errCode' => 0,
+                    'errMessage' => 'Ok',
+                    'account' => $account
+                ];
+            } else {
+                $data = [
+                    'errCode' => 3,
+                    'errMessage' => 'Wrong password'
+                ];
+            }
+        }
+        return response()->json($data);
+        //$account->password = Hash::
+    }
+
     //Put function
     public function update(Request $request, $id)
     {

@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TeacherController;
 use App\Http\Controllers\Api\AccountController;
 use App\Http\Controllers\Api\AuthController;
+use Illuminate\Support\Facades\Route;
+
 Route::prefix('category')->group(function () {
     Route::get('/', [CategoryController::class, 'index']);
     Route::get('/{id}', [CategoryController::class, 'show']);
@@ -49,6 +51,7 @@ Route::prefix('role')->group(function () {
     Route::get('/{id}', [RoleController::class, 'show']);
     Route::post('/', [RoleController::class, 'store']);
     Route::put('/{id}', [RoleController::class, 'update']);
+    Route::put('/restore/{id}', [RoleController::class, 'restore']);
     Route::delete('/{id}', [RoleController::class, 'destroy']);
 });
 
@@ -58,9 +61,10 @@ Route::prefix('account')->group(function () {
     Route::post('/', [AccountController::class, 'store']);
     Route::put('/{id}', [AccountController::class, 'update']);
     Route::delete('/{id}', [AccountController::class, 'destroy']);
+    Route::post('/login', [AccountController::class, 'login']);
 });
 
-Route::prefix('teacher')->group(function() {
+Route::prefix('teacher')->group(function () {
     Route::get('/', [TeacherController::class, 'index']);
     Route::get('/{id}', [TeacherController::class, 'show']);
     Route::post('/', [TeacherController::class, 'store']);
@@ -68,10 +72,10 @@ Route::prefix('teacher')->group(function() {
     Route::delete('/{id}', [TeacherController::class, 'destroy']);
 });
 
-Route::prefix('auth')->group(function() {
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/logIn', [AuthController::class, 'logIn']);
-    Route::post('/logOut', [AuthController::class, 'logOut']);
-    Route::post('/changePass', [AuthController::class, 'changePass']);
-    Route::post('/forgotPass', [AuthController::class, 'forgotPass']);
-});
+// Route::prefix('auth')->group(function() {
+//     Route::post('/register', [AuthController::class, 'register']);
+//     Route::post('/logIn', [AuthController::class, 'logIn']);
+//     Route::post('/logOut', [AuthController::class, 'logOut']);
+//     Route::post('/changePass', [AuthController::class, 'changePass']);
+//     Route::post('/forgotPass', [AuthController::class, 'forgotPass']);
+// });

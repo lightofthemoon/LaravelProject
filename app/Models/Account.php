@@ -10,7 +10,7 @@ class Account extends Model
     use HasFactory;
     public function role()
     {
-        return $this->belongsTo(Role::class, 'roleId');
+        return $this->belongsTo(Role::class, 'id');
     }
     protected $table = 'account'; 
     protected $primaryKey = 'id'; 
