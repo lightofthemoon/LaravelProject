@@ -92,7 +92,7 @@ class AccountController extends Controller
 
     public function login(Request $request)
     {
-        if (!isset($request->email) || !isset($request->password)) {
+        if (isset($request->email) || isset($request->password)) {
             return response()->json([
                 'errCode' => 1,
                 'message' => 'Email and password are required'
@@ -100,7 +100,7 @@ class AccountController extends Controller
         }
         $account = Account::where('email', $request->email)->first();
         $data = [];
-        if ($account) {
+        if (isset($account)) {
             if (Hash::check($request->password, $account->password)) {
                 $data =  [
                     'errCode' => 0,
