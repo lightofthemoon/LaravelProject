@@ -49,7 +49,14 @@ class CourseController extends Controller
         $course = Course::findOrFail($id);
         return response()->json($course);
     }
+    public function showByCategory($categoryId)
+    {
+        $courses = Course::where('categoryId', $categoryId)
+                        ->get();
     
+        return response()->json($courses);
+    }
+
 
     // Post function
     public function store(Request $request)
