@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('course', function (Blueprint $table) {
             $table->id();
             $table->foreignId('categoryId')->constrained('category');
+            $table->foreignId('teacherId')->constrained('teacher');
             $table->string('title');
             $table->string('description');
             $table->date('startDate');

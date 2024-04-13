@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use App\Http\Controllers\Controller; 
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Lesson;
 
@@ -10,7 +11,8 @@ class LessonController extends Controller
 
     ///Validate
 
-    public function validationData($request) {
+    public function validationData($request)
+    {
         $validatedData = $request->validate([
             'courseId' => 'required|string|max:255',
             'teacherId' => 'required|string|max:255',
@@ -20,7 +22,9 @@ class LessonController extends Controller
         ]);
         return $validatedData;
     }
-    public function validate($validatedData, $account) {
+
+    public function validate($validatedData, $account)
+    {
         $account->courseId = $validatedData['courseId'];
         $account->teacherId = $validatedData['teacherId'];
         $account->name = $validatedData['name'];
@@ -41,7 +45,7 @@ class LessonController extends Controller
         $lesson = Lesson::findOrFail($id);
         return response()->json($lesson);
     }
-    
+
     //Post function
     public function store(Request $request)
     {
@@ -65,8 +69,9 @@ class LessonController extends Controller
         return response()->json($lesson);
     }
 
-    public function restore($id) {
-        $lesson = Account::findOrFail($id);
+    public function restore($id)
+    {
+        $lesson = Lesson::findOrFail($id);
         $lesson->isDeleted = 0;
         $message = "Restore Lesson Success!";
         return response()->json($message, 200);
@@ -75,7 +80,7 @@ class LessonController extends Controller
     //Delete function
     public function destroy($id)
     {
-        $lesson = Account::findOrFail($id);
+        $lesson = Lesson::findOrFail($id);
         $lesson->isDeleted = 1;
         return response()->json("Delete Lesson success", 200);
     }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TeacherController;
 use App\Http\Controllers\Api\AccountController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CartController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('category')->group(function () {
@@ -78,3 +79,10 @@ Route::prefix('teacher')->group(function () {
 //     Route::post('/changePass', [AuthController::class, 'changePass']);
 //     Route::post('/forgotPass', [AuthController::class, 'forgotPass']);
 // });
+
+Route::prefix('cart')->group(function () {
+    Route::get('/{id}', [CartController::class, 'getByAccountId']);
+    Route::post('/', [CartController::class, 'addToCart']);
+    // Route::put('/{id}', [CartController::class, 'update']);
+    Route::delete('/{id}', [CartController::class, 'deleteCart']);
+});

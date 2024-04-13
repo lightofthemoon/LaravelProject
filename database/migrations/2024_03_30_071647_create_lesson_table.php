@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('lesson', function (Blueprint $table) {
             $table->id();
             $table->foreignId('courseId')->constrained('course');
-            $table->foreignId('teacherId')->constrained('teacher');
             $table->string("name");
             $table->string("content");
             $table->string("videoURL");

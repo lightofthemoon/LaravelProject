@@ -13,7 +13,20 @@ class Course extends Model
     protected $foreignKey = 'categoryId';
     public function category()
     {
-        return $this->belongsTo(Category::class, 'categoryId', 'id');
+        return $this->belongsTo(
+            Category::class,
+            'categoryId',
+            'id',
+        );
     }
+    public function teacher()
+    {
+        return $this->belongsTo(
+            Teacher::class,
+            'teacherId',
+            'id'
+        );
+    }
+    
     public $timestamp = true;
 }

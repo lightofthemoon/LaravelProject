@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use App\Http\Controllers\Controller; 
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Review;
 
 class ReviewController extends Controller
 {
     ////Validate() 
-    public function validationData($request) {
+    public function validationData($request)
+    {
         $validatedData = $request->validate([
             'courseId' => 'required|string|max:255',
             'accountId' => 'required|string|max:255',
@@ -17,7 +19,8 @@ class ReviewController extends Controller
         ]);
         return $validatedData;
     }
-    public function validate($validatedData, $account) {
+    public function validate($validatedData, $account)
+    {
         $account->courseId = $validatedData['courseId'];
         $account->accountId = $validatedData['accountId'];
         $account->rating = $validatedData['rating'];
@@ -42,7 +45,7 @@ class ReviewController extends Controller
         $reviews = Review::where('courseId', $courseId)->get();
         return response()->json($reviews);
     }
-    
+
     ////Post function
     public function store(Request $request)
     {
@@ -69,7 +72,7 @@ class ReviewController extends Controller
 
     public function destroy($id)
     {
-        $review = Account::findOrFail($id);
+        $review = Review::findOrFail($id);
         $review->isDeleted = 1;
         return response()->json("Delete Review success", 200);
     }
