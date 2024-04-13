@@ -92,7 +92,7 @@ class AccountController extends Controller
 
     public function login(Request $request)
     {
-        if (isset($request->email) || isset($request->password)) {
+        if (!isset($request->email) || !isset($request->password)) {
             return response()->json([
                 'errCode' => 1,
                 'message' => 'Email and password are required'
@@ -113,6 +113,11 @@ class AccountController extends Controller
                     'errMessage' => 'Wrong password'
                 ];
             }
+        } else {
+            $data = [
+                'errCode' => 1,
+                'errMessage' => 'Email Wrong'
+            ];
         }
         return response()->json($data);
         //$account->password = Hash::
