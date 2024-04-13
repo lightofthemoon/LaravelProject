@@ -18,8 +18,8 @@ class CourseResource extends JsonResource
             'demoVideo' => $this->demoVideo,
             'note' => $this->note,
             'isDeleted' => $this->isDeleted,
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
+            'createdAt' => $this->created_at->toDateString(), 
+            'updatedAt' => $this->updated_at->toDateString(),
             'category' => [
                 'id' => $this->category->id,
                 'categoryName' => $this->category->categoryName,

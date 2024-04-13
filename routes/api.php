@@ -24,6 +24,7 @@ Route::prefix('category')->group(function () {
 Route::prefix('course')->group(function () {
     Route::get('/', [CourseController::class, 'index']);
     Route::get('/{id}', [CourseController::class, 'show']);
+    Route::get('/show-by-category/{id}', [CourseController::class, 'showByCategory']);
     Route::post('/', [CourseController::class, 'store']);
     Route::put('/{id}', [CourseController::class, 'update']);
     Route::put('/restore/{id}', [CourseController::class, 'restore']);
