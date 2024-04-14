@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\TeacherController;
 use App\Http\Controllers\Api\AccountController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CartController;
+use App\Models\CourseRegistration;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('category')->group(function () {
@@ -84,9 +85,9 @@ Route::prefix('teacher')->group(function () {
 //     Route::post('/forgotPass', [AuthController::class, 'forgotPass']);
 // });
 
-Route::prefix('cart')->group(function () {
-    Route::get('/{id}', [CartController::class, 'getByAccountId']);
-    Route::post('/', [CartController::class, 'addToCart']);
-    // Route::put('/{id}', [CartController::class, 'update']);
-    Route::delete('/{id}', [CartController::class, 'deleteCart']);
+Route::prefix('courseRegistration')->group(function () {
+    Route::get('/{id}', [CourseRegistration::class, 'getByAccountId']);
+    Route::post('/', [CourseRegistration::class, 'store']);
+    // Route::put('/{id}', [CourseRegistration::class, 'update']);
+    Route::delete('/{id}', [CourseRegistration::class, 'destroy']);
 });

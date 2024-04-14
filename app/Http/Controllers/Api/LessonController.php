@@ -36,7 +36,7 @@ class LessonController extends Controller
 
     public function index()
     {
-        $lessons = Lesson::all();
+        $lessons = Lesson::with('course')->get();
         return response()->json($lessons);
     }
 

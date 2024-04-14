@@ -85,12 +85,12 @@ class AccountController extends Controller
             return response()->json([
                 'errCode' => 0,
                 'message' => 'User Create Success'
-            ],200);
+            ], 200);
         }
         return response()->json([
             'errCode' => 1,
             'message' => 'User Exist'
-        ],404);
+        ], 404);
     }
 
     public function login(Request $request)
@@ -99,7 +99,7 @@ class AccountController extends Controller
             return response()->json([
                 'errCode' => 1,
                 'message' => 'Email and password are required'
-            ],400);
+            ], 400);
         }
         $account = Account::where('email', $request->email)->first();
 
@@ -109,19 +109,18 @@ class AccountController extends Controller
                     'errCode' => 0,
                     'message' => 'Ok',
                     'account' => $account
-                ],200);
+                ], 200);
             } else {
                 return response()->json([
                     'errCode' => 3,
                     'message' => 'Wrong password',
-                ],400);
+                ], 400);
             }
         } else {
             return response()->json([
                 'errCode' => 1,
                 'message' => 'Email Wrong',
-            ],400);
-
+            ], 400);
         }
     }
 
@@ -141,6 +140,7 @@ class AccountController extends Controller
     {
         $account = Account::findOrFail($id);
         $account->isDeleted = 1;
+        $account->save();
         return response()->json("Delete Account success", 200);
     }
 }
