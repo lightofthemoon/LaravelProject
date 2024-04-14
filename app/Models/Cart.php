@@ -15,7 +15,7 @@ class Cart extends Model
     {
         return $this->belongsTo(Course::class, 'courseId', 'id');
     }
-
+    
     public function account()
     {
         return $this->belongsTo(Account::class, 'accountId', 'id');

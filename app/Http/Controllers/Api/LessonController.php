@@ -46,6 +46,11 @@ class LessonController extends Controller
         return response()->json($lesson);
     }
 
+    public function showByCourseId($courseId)
+    {
+        $lessons = Lesson::where('courseId', $courseId)->get();
+        return response()->json($lessons);
+    }
     //Post function
     public function store(Request $request)
     {
