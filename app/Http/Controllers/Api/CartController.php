@@ -12,17 +12,19 @@ class CartController extends Controller
     public function getByAccountId($accountId)
     {
         try {
-            //code...
+
             $cart = Cart::where('accountId', $accountId)->get();
             $data = [];
+            //Check cart có dữ liệu hay không
             if (isset($cart)) {
-                $data =  [
-                    'errCode' => 0,
-                    'errMessage' => 'Cart null',
-                ];
+                $data = $cart;
+                
                 return response()->json($data);
             }
-            $data = $cart;
+            $data =  [
+                'errCode' => 0,
+                'errMessage' => 'Cart null',
+            ];
             return response()->json($data);
         } catch (\Exception $th) {
             //throw $th;
