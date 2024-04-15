@@ -19,6 +19,10 @@ class Course extends Model
             'id',
         );
     }
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
     public function teacher()
     {
         return $this->belongsTo(

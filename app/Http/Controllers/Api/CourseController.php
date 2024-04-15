@@ -43,7 +43,7 @@ class CourseController extends Controller
             return $resource->toArray(request());
         })->all();
     }
-
+    
     public function show($id)
     {
         $course = Course::findOrFail($id);
@@ -59,7 +59,16 @@ class CourseController extends Controller
         })->all();
     }
 
+    public function search($q)
+    {
+        $courses = Course::where('title', 'LIKE', "%{$q}%")
+            ->orWhere('description', 'LIKE', "%{$q}%")
+            ->get();
 
+        return CourseResource::collection($courses)->map(function ($resource) {
+            return $resource->toArray(request());
+        })->all();
+    }
     // Post function
     public function store(Request $request)
     {
