@@ -88,3 +88,9 @@ Route::prefix('courseRegistration')->group(function () {
     // Route::put('/{id}', [CourseRegistration::class, 'update']);
     Route::delete('/{id}', [CourseRegistration::class, 'destroy']);
 });
+
+Route::prefix('cart')->group(function () {
+    Route::get('/{id}', [CartController::class, 'getByAccountId']);
+    Route::post('/', [CourseRegistration::class, 'addToCart']);
+    Route::delete('/{id}', [CourseRegistration::class, 'deleteCart']);
+});
