@@ -25,7 +25,7 @@ Route::prefix('category')->group(function () {
 Route::prefix('course')->group(function () {
     Route::get('/', [CourseController::class, 'index']);
     Route::get('/{id}', [CourseController::class, 'show']);
-    
+
     Route::get('/show-by-category/{id}', [CourseController::class, 'showByCategory']);
     Route::get('/search/{q}', [CourseController::class, 'search']);
     Route::post('/', [CourseController::class, 'store']);
@@ -94,6 +94,6 @@ Route::prefix('courseRegistration')->group(function () {
 
 Route::prefix('cart')->group(function () {
     Route::get('/{id}', [CartController::class, 'getByAccountId']);
-    Route::post('/', [CourseRegistration::class, 'addToCart']);
-    Route::delete('/{id}', [CourseRegistration::class, 'deleteCart']);
+    Route::post('/', [CartController::class, 'addToCart']);
+    Route::delete('/{id}', [CartController::class, 'deleteCart']);
 });
